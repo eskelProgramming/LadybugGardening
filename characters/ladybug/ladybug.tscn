@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c5omi1tenqxg8"]
+[gd_scene load_steps=21 format=3 uid="uid://c5omi1tenqxg8"]
 
 [ext_resource type="Script" uid="uid://tmnsu8iu4x8d" path="res://characters/ladybug/ladybug.gd" id="1_17e8r"]
 [ext_resource type="Texture2D" uid="uid://cd1ew0n4aeo1f" path="res://assets/characters/ladybug/ladybug_spritesheet.png" id="1_a2x2t"]
@@ -6,14 +6,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fq8lj"]
 radius = 13.0
 height = 28.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_17e8r"]
-atlas = ExtResource("1_a2x2t")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uota0"]
-atlas = ExtResource("1_a2x2t")
-region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fq8lj"]
 atlas = ExtResource("1_a2x2t")
@@ -83,17 +75,6 @@ region = Rect2(224, 0, 32, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_17e8r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uota0")
-}],
-"loop": true,
-"name": &"default",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_fq8lj")
 }, {
 "duration": 1.0,
@@ -101,7 +82,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_down",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -112,7 +93,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_left",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -123,7 +104,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_right",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -134,7 +115,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_up",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -145,7 +126,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -156,7 +137,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -167,7 +148,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_right",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -178,7 +159,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 2.0
+"speed": 5.0
 }]
 
 [node name="Ladybug" type="Node2D"]
@@ -193,6 +174,6 @@ shape = SubResource("CapsuleShape2D_fq8lj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_l7mn3")
-animation = &"walk_up"
-autoplay = "default"
-frame_progress = 0.436714
+animation = &"idle_left"
+autoplay = "idle_down"
+frame_progress = 0.16990568
