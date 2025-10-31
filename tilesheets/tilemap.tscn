@@ -1,0 +1,36 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv3x2em8csdxb"]
+
+[ext_resource type="PackedScene" uid="uid://m2yqbpfen6c4" path="res://tilesheets/dirt.tscn" id="1_yu14v"]
+[ext_resource type="Texture2D" uid="uid://bxq42160sfiim" path="res://assets/tilesheets/shop.png" id="2_g6sjx"]
+[ext_resource type="Texture2D" uid="uid://cwh14v5ktpwep" path="res://assets/tilesheets/stump.png" id="3_ceb2p"]
+[ext_resource type="Texture2D" uid="uid://bt86cbpag70la" path="res://assets/tilesheets/walls.png" id="4_qqhke"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_yu14v"]
+resource_name = "dirt"
+scenes/1/scene = ExtResource("1_yu14v")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g6sjx"]
+texture = ExtResource("2_g6sjx")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceb2p"]
+texture = ExtResource("3_ceb2p")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qqhke"]
+texture = ExtResource("4_qqhke")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_dl4vy"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetScenesCollectionSource_yu14v")
+sources/2 = SubResource("TileSetAtlasSource_g6sjx")
+sources/3 = SubResource("TileSetAtlasSource_ceb2p")
+sources/4 = SubResource("TileSetAtlasSource_qqhke")
+
+[node name="tilemap" type="TileMapLayer"]
+texture_filter = 1
+tile_set = SubResource("TileSet_dl4vy")
