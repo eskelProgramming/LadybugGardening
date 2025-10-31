@@ -174,6 +174,8 @@ shape = SubResource("CapsuleShape2D_fq8lj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_l7mn3")
-animation = &"idle_left"
+animation = &"idle_down"
 autoplay = "idle_down"
-frame_progress = 0.16990568
+frame_progress = 0.053718235
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
