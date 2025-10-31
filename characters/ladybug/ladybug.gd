@@ -1,33 +1,42 @@
-extends Node2D
+extends CharacterBody2D
 
-@onready var _animated_sprite = $CharacterBody2D/AnimatedSprite2D
+@onready var _animated_sprite = $AnimatedSprite2D
 
-var current_direction = Direction.DOWN
+# Properties
+@export var speed = 250.0
+var face_direction = "down"
+var animation_to_play = "idle_down"
 
-func _process(_delta):
+# Start front idle animation on load
+func _ready():
+	_animated_sprite.stop()
+	_animated_sprite.play("idle_down")
+
+func _physics_process(_delta):
+	# Reset velocity
+	velocity = Vector2.ZERO
+	
+	# Add appropriate velocities depending on button press
+	if Input.is_action_pressed("left"):
+		velocity.x -= 1.0 * speed
+		# Only face left/right if not diagonal movement
+		if velocity.y == 0.0:
+			face_direction = "left"
 	if Input.is_action_pressed("right"):
-		_animated_sprite.play("walk_right")
-		current_direction = Direction.RIGHT
-	elif Input.is_action_pressed("left"):
-		_animated_sprite.play("walk_left")
-		current_direction = Direction.LEFT
-	elif  Input.is_action_pressed("down"):
-		_animated_sprite.play("walk_down")
-		current_direction = Direction.DOWN
-	elif Input.is_action_pressed("up"):
-		_animated_sprite.play("walk_up")
-		current_direction = Direction.UP
-	else:
-		match current_direction:
-			Direction.RIGHT:
-				_animated_sprite.play("idle_right")
-			Direction.LEFT:
-				_animated_sprite.play("idle_left")
-			Direction.DOWN:
-				_animated_sprite.play("idle_down")
-			Direction.UP:
-				_animated_sprite.play("idle_up")
-
-enum Direction {
-	UP, DOWN, RIGHT, LEFT
-}
+		velocity.x += 1.0 * speed
+		# Only face left/right if not diagonal movement
+		if velocity.y == 0.0:
+			face_direction = "right"
+	if Input.is_action_pressed("up"):
+		velocity.y -= 1.0 * speed
+		face_direction = "up"
+	if Input.is_action_pressed("down"):
+		velocity.y += 1.0 * speed
+		face_direction = "down"
+		
+	# All movement animations named appropriately, eg "Left_Idle" or "Back_Walk"
+	animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
+	_animated_sprite.play(animation_to_play)
+	
+	# Move character, slide at collision
+	move_and_slide()
