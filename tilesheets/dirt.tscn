@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://m2yqbpfen6c4"]
+
+[ext_resource type="Texture2D" uid="uid://b35xm3s5wtqk7" path="res://assets/tilesheets/ground.png" id="1_wekdc"]
+[ext_resource type="Texture2D" uid="uid://2nmoenejsh0l" path="res://assets/tilesheets/tilled_dirt.png" id="2_emtc0"]
+[ext_resource type="Texture2D" uid="uid://ybscchxe22xm" path="res://assets/tilesheets/watered_dirt.png" id="3_hn56g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ny8vc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wekdc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_emtc0")
+}],
+"loop": true,
+"name": &"tilled",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_hn56g")
+}],
+"loop": true,
+"name": &"watered",
+"speed": 5.0
+}]
+
+[node name="dirt" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ny8vc")
+autoplay = "default"
