@@ -184,7 +184,7 @@ frame_progress = 0.053718235
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
-[node name="ItemList" type="ItemList" parent="CharacterBody2D"]
+[node name="toolbar" type="ItemList" parent="CharacterBody2D"]
 texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -209,3 +209,5 @@ item_2/text = "3"
 item_2/icon = ExtResource("5_uh8up")
 item_3/text = "4"
 item_3/icon = ExtResource("6_ebcud")
+
+[connection signal="item_clicked" from="CharacterBody2D/toolbar" to="CharacterBody2D" method="_on_toolbar_item_clicked"]
