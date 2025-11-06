@@ -75,6 +75,10 @@ func _physics_process(_delta):
 				ToolManager.Tools.SEEDBAG:
 					pass
 	
+	if Input.is_action_just_pressed("interact"):
+		if is_touching_stump:
+			print("Going to Sleep!")
+			DayNightHandler.sleep()
 	
 	_animated_sprite.play(animation_to_play)
 	
