@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 ToolManager="*res://globals/tool_manager.gd"
 MouseHandler="*res://globals/mouse_handler.gd"
+DayNightHandler="*res://globals/day_night_handler.gd"
+
+[global_group]
+
+layouts="tilemaps"
+dirt_tiles=""
 
 [input]
 

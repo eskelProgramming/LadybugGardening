@@ -2,7 +2,7 @@ class_name Dirt
 
 extends Area2D
 
-var dirt_state = UNTILLED
+var dirt_state = dirt_states.UNTILLED
 @onready var animation_player = $AnimatedSprite2D
 
 func _ready():
@@ -10,9 +10,8 @@ func _ready():
 	animation_player.play("default")
 
 func hoe_dirt() :
-	if dirt_state == UNTILLED:
-		animation_player.play("tilled")
-		dirt_state = TILLED
+	if dirt_state == dirt_states.UNTILLED:
+		update_state(dirt_states.TILLED)
 
 func water_dirt() :
 	if dirt_state == TILLED:

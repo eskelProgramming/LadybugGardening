@@ -35,7 +35,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wekdc"]
 size = Vector2(16, 16)
 
-[node name="dirt" type="Area2D"]
+[node name="dirt" type="Area2D" groups=["dirt_tiles"]]
 script = ExtResource("1_emtc0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
