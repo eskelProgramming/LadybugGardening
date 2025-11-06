@@ -1,7 +1,10 @@
+class_name Ladybug
+
 extends CharacterBody2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var toolbar = $Camera2D/toolbar
+@onready var ladybug = $"."
 
 # Properties
 @export var speed = 250.0
@@ -58,17 +61,17 @@ func _physics_process(_delta):
 	animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
 	
 	if Input.is_action_just_pressed("use") :
-		if MouseHandler.current_tile != null:
+		if MouseHandler.current_tile != null && is_ladybug_in_range() :
 			match ToolManager.current_tool:
 				ToolManager.Tools.WATERING_CAN:
 					pass
 				ToolManager.Tools.HOE:
 					MouseHandler.current_tile.hoe_dirt()
+					animation_to_play = "hoe_" + face_direction
 				ToolManager.Tools.SCYTHE:
 					pass
 				ToolManager.Tools.SEEDBAG:
 					pass
-			animation_to_play = "hoe_" + face_direction
 	
 	_animated_sprite.play(animation_to_play)
 	
@@ -89,3 +92,7 @@ func _on_toolbar_item_clicked(index: int, at_position: Vector2, mouse_button_ind
 		3:
 			ToolManager.current_tool = ToolManager.Tools.SEEDBAG
 			toolbar.select(3)
+
+func is_ladybug_in_range():
+	var distance_to = ladybug.position.distance_to(MouseHandler.current_tile.position)
+	return distance_to < 40
