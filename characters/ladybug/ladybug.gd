@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var _animated_sprite = $AnimatedSprite2D
-@onready var toolbar = $toolbar
+@onready var toolbar = $Camera2D/toolbar
 
 # Properties
 @export var speed = 250.0
