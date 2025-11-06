@@ -63,7 +63,6 @@ func _physics_process(_delta):
 			toolbar.select(3)
 
 
-
 func _on_toolbar_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	match index:
 		0:
