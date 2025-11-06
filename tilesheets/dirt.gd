@@ -14,6 +14,12 @@ func hoe_dirt() :
 		animation_player.play("tilled")
 		dirt_state = TILLED
 
+func water_dirt() :
+	if dirt_state == TILLED:
+		animation_player.play("watered")
+		dirt_state = WATERED
+	
+
 enum {UNTILLED, TILLED, WATERED}
 
 func _on_mouse_entered() -> void:

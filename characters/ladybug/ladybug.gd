@@ -64,7 +64,7 @@ func _physics_process(_delta):
 		if MouseHandler.current_tile != null && is_ladybug_in_range() :
 			match ToolManager.current_tool:
 				ToolManager.Tools.WATERING_CAN:
-					pass
+					MouseHandler.current_tile.water_dirt()
 				ToolManager.Tools.HOE:
 					MouseHandler.current_tile.hoe_dirt()
 					animation_to_play = "hoe_" + face_direction
