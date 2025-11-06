@@ -35,10 +35,6 @@ func _physics_process(_delta):
 		velocity.y += 1.0 * speed
 		face_direction = "down"
 	
-	# All movement animations named appropriately, eg "Left_Idle" or "Back_Walk"
-	animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
-	_animated_sprite.play(animation_to_play)
-	
 	if Input.is_action_just_pressed("toolbar_1"):
 		ToolManager.current_tool = ToolManager.Tools.WATERING_CAN
 	if Input.is_action_just_pressed("toolbar_2"):
@@ -47,11 +43,8 @@ func _physics_process(_delta):
 		ToolManager.current_tool = ToolManager.Tools.SCYTHE
 	if Input.is_action_just_pressed("toolbar_4"):
 		ToolManager.current_tool = ToolManager.Tools.SEEDBAG
-	
-	# Move character, slide at collision
-	move_and_slide()
-	
-	# Set the toolbar to the correct tool
+		
+		# Set the toolbar to the correct tool
 	match ToolManager.current_tool:
 		ToolManager.Tools.WATERING_CAN:
 			toolbar.select(0)
@@ -61,6 +54,25 @@ func _physics_process(_delta):
 			toolbar.select(2)
 		ToolManager.Tools.SEEDBAG:
 			toolbar.select(3)
+	
+	animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
+	
+	if Input.is_action_just_pressed("use") :
+		if MouseHandler.current_tile != null:
+			match ToolManager.current_tool:
+				ToolManager.Tools.WATERING_CAN:
+					pass
+				ToolManager.Tools.HOE:
+					MouseHandler.current_tile.hoe_dirt()
+				ToolManager.Tools.SCYTHE:
+					pass
+				ToolManager.Tools.SEEDBAG:
+					pass
+			animation_to_play = "hoe_" + face_direction
+	
+	_animated_sprite.play(animation_to_play)
+	
+	move_and_slide()
 
 
 func _on_toolbar_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
