@@ -11,6 +11,8 @@ extends CharacterBody2D
 var face_direction = "down"
 var animation_to_play = "idle_down"
 
+var is_touching_stump = false
+
 # Start front idle animation on load
 func _ready():
 	_animated_sprite.stop()
@@ -72,6 +74,7 @@ func _physics_process(_delta):
 					pass
 				ToolManager.Tools.SEEDBAG:
 					pass
+	
 	
 	_animated_sprite.play(animation_to_play)
 	

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3e5ctpvuwxba"]
+
+[ext_resource type="Script" uid="uid://cqb5ouxqgp5i2" path="res://misc/stump.gd" id="1_7rklg"]
+[ext_resource type="Texture2D" uid="uid://bva6bxt02xgqg" path="res://assets/misc/Stump.png" id="1_c3rcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0vx1"]
+size = Vector2(93, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rklg"]
+size = Vector2(81, 43)
+
+[node name="Stump" type="Area2D"]
+script = ExtResource("1_7rklg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -24)
+texture = ExtResource("1_c3rcq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -21.5)
+shape = SubResource("RectangleShape2D_x0vx1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, -21.5)
+shape = SubResource("RectangleShape2D_7rklg")
+debug_color = Color(0.95795363, 0.028972208, 0.5168269, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
