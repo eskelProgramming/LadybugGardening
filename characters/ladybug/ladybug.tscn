@@ -166,25 +166,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Ladybug" type="Node2D"]
-
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Ladybug" type="CharacterBody2D"]
 script = ExtResource("1_17e8r")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 11)
 shape = SubResource("CapsuleShape2D_fq8lj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_l7mn3")
-animation = &"idle_down"
-autoplay = "idle_down"
-frame_progress = 0.053718235
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-
-[node name="toolbar" type="ItemList" parent="CharacterBody2D"]
+[node name="toolbar" type="ItemList" parent="."]
 texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -210,4 +201,11 @@ item_2/icon = ExtResource("5_uh8up")
 item_3/text = "4"
 item_3/icon = ExtResource("6_ebcud")
 
-[connection signal="item_clicked" from="CharacterBody2D/toolbar" to="CharacterBody2D" method="_on_toolbar_item_clicked"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_l7mn3")
+animation = &"idle_down"
+autoplay = "idle_down"
+frame_progress = 0.053718235
+
+[connection signal="item_clicked" from="toolbar" to="." method="_on_toolbar_item_clicked"]

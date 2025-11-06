@@ -7,7 +7,6 @@ extends CharacterBody2D
 @export var speed = 250.0
 var face_direction = "down"
 var animation_to_play = "idle_down"
-var current_tool = Tools.WATERING_CAN
 
 # Start front idle animation on load
 func _ready():
@@ -41,38 +40,41 @@ func _physics_process(_delta):
 	_animated_sprite.play(animation_to_play)
 	
 	if Input.is_action_just_pressed("toolbar_1"):
-		current_tool = Tools.WATERING_CAN
+		ToolManager.current_tool = ToolManager.Tools.WATERING_CAN
 	if Input.is_action_just_pressed("toolbar_2"):
-		current_tool = Tools.HOE
+		ToolManager.current_tool = ToolManager.Tools.HOE
 	if Input.is_action_just_pressed("toolbar_3"):
-		current_tool = Tools.SCYTHE
+		ToolManager.current_tool = ToolManager.Tools.SCYTHE
 	if Input.is_action_just_pressed("toolbar_4"):
-		current_tool = Tools.SEEDBAG
+		ToolManager.current_tool = ToolManager.Tools.SEEDBAG
 	
 	# Move character, slide at collision
 	move_and_slide()
 	
 	# Set the toolbar to the correct tool
-	match current_tool:
-		Tools.WATERING_CAN:
+	match ToolManager.current_tool:
+		ToolManager.Tools.WATERING_CAN:
 			toolbar.select(0)
-		Tools.HOE:
+		ToolManager.Tools.HOE:
 			toolbar.select(1)
-		Tools.SCYTHE:
+		ToolManager.Tools.SCYTHE:
 			toolbar.select(2)
-		Tools.SEEDBAG:
+		ToolManager.Tools.SEEDBAG:
 			toolbar.select(3)
 
-enum Tools { WATERING_CAN, HOE, SCYTHE, SEEDBAG }
 
 
 func _on_toolbar_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	match index:
 		0:
-			current_tool = Tools.WATERING_CAN
+			ToolManager.current_tool = ToolManager.Tools.WATERING_CAN
+			toolbar.select(0)
 		1:
-			current_tool = Tools.HOE
+			ToolManager.current_tool = ToolManager.Tools.HOE
+			toolbar.select(1)
 		2:
-			current_tool = Tools.SCYTHE
-		3: 
-			current_tool = Tools.SEEDBAG
+			ToolManager.current_tool = ToolManager.Tools.SCYTHE
+			toolbar.select(2)
+		3:
+			ToolManager.current_tool = ToolManager.Tools.SEEDBAG
+			toolbar.select(3)
