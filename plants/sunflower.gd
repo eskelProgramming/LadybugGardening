@@ -18,10 +18,17 @@ func progress_plant():
 					animated_sprite.play("grown")
 
 func harvest_plant():
-	pass
+	if current_stage == plant_stage.GROWN:
+		MoneyManager.add_money(plant_sell_price)
+		get_tree().queue_delete(self)
+		print(MoneyManager.current_money)
 
 func sell_plant():
 	pass
 
 func buy_plant():
 	pass
+
+
+func _on_mouse_entered() -> void:
+	MouseHandler.current_plant_tile = self
