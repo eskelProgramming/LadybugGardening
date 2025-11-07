@@ -16,6 +16,12 @@ func hoe_dirt() :
 func water_dirt() :
 	if dirt_state == dirt_states.TILLED:
 		update_state(dirt_states.WATERED)
+	elif dirt_state == dirt_states.PLANTED_UNWATERED:
+		update_state(dirt_states.PLANTED_WATERED)
+
+func plant_seed() :
+	if dirt_state == dirt_states.WATERED:
+		update_state(dirt_states.PLANTED_WATERED)
 
 func update_state(state):
 	match state:
@@ -28,8 +34,14 @@ func update_state(state):
 		dirt_states.WATERED:
 			animation_player.play("watered")
 			dirt_state = dirt_states.WATERED
+		dirt_states.PLANTED_WATERED:
+			animation_player.play("watered")
+			dirt_state = dirt_states.PLANTED_WATERED
+		dirt_states.PLANTED_UNWATERED:
+			animation_player.play("tilled")
+			dirt_state = dirt_states.PLANTED_UNWATERED
 
-enum dirt_states {UNTILLED, TILLED, WATERED}
+enum dirt_states {UNTILLED, TILLED, WATERED, PLANTED_WATERED, PLANTED_UNWATERED}
 
 func _on_mouse_entered() -> void:
-	MouseHandler.current_tile = self
+	MouseHandler.current_dirt_tile = self

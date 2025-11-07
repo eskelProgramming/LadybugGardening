@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://lddauigtp6jl"]
+
+[ext_resource type="Script" uid="uid://x0demees8k48" path="res://plants/sunflower.gd" id="1_1cqdq"]
+[ext_resource type="Texture2D" uid="uid://bkx1haodbixut" path="res://assets/plants/sunflower.png" id="1_4tdq0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cqdq"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v8gv"]
+atlas = ExtResource("1_4tdq0")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq7h7"]
+atlas = ExtResource("1_4tdq0")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fgmt"]
+atlas = ExtResource("1_4tdq0")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ipjm"]
+atlas = ExtResource("1_4tdq0")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h45f3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v8gv")
+}],
+"loop": true,
+"name": &"grown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq7h7")
+}],
+"loop": true,
+"name": &"seed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fgmt")
+}],
+"loop": true,
+"name": &"sprout",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ipjm")
+}],
+"loop": true,
+"name": &"stalk",
+"speed": 5.0
+}]
+
+[node name="Sunflower" type="Area2D" groups=["plant_tiles", "plants"]]
+texture_filter = 1
+script = ExtResource("1_1cqdq")
+metadata/_custom_type_script = "uid://bb06fmiijadup"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_1cqdq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_h45f3")
+animation = &"grown"
+autoplay = "seed"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
