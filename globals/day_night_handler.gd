@@ -6,8 +6,6 @@ var farm_tilemap
 
 func sleep() :
 	print("Sleeping...")
-	if farm_tilemap == null:
-		farm_tilemap = get_tree().get_nodes_in_group("layouts")[0]
 	reset_tiles()
 
 func reset_tiles() :
