@@ -1,6 +1,7 @@
 extends Plant
 
 func progress_plant():
+	current_days += 1
 	if current_days >= (num_days_per_tick * (current_stage + 1)):
 			match current_stage:
 				plant_stage.SEED:
