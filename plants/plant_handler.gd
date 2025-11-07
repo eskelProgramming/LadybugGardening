@@ -8,6 +8,7 @@ func plant(dirt_tile) :
 	if dirt_tile.dirt_state == dirt_tile.dirt_states.WATERED:
 		var new_plant = load("res://plants/" + current_seed + ".tscn").instantiate()
 		new_plant.position = dirt_tile.position
+		new_plant.dirt = dirt_tile
 		if MoneyManager.can_remove_money(new_plant.plant_buy_price) :
 			MoneyManager.remove_money(new_plant.plant_buy_price)
 			get_tree().current_scene.add_child(new_plant)
@@ -20,5 +21,5 @@ func plant(dirt_tile) :
 		return false
 
 func update_plants():
-	for plant in all_plants:
+	for plant : Plant in all_plants:
 		plant.progress_plant()

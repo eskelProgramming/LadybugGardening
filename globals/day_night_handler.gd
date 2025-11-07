@@ -6,6 +6,8 @@ func sleep() :
 	reset_tiles()
 
 func reset_tiles() :
+	PlantHandler.update_plants()
+	
 	for dirt in get_tree().get_nodes_in_group("dirt_tiles"):
 		match dirt.dirt_state:
 			dirt.dirt_states.UNTILLED:
@@ -17,5 +19,3 @@ func reset_tiles() :
 				dirt.update_state(dirt.dirt_states.TILLED)
 			dirt.dirt_states.PLANTED_WATERED:
 				dirt.update_state(dirt.dirt_states.PLANTED_UNWATERED)
-	
-	PlantHandler.update_plants()
