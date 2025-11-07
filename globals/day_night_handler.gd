@@ -13,7 +13,7 @@ func reset_tiles() :
 			dirt.dirt_states.UNTILLED:
 				pass
 			dirt.dirt_states.TILLED:
-				if randf() < 0.5:
+				if randf() < 0.3:
 					dirt.update_state(dirt.dirt_states.UNTILLED)
 			dirt.dirt_states.WATERED:
 				dirt.update_state(dirt.dirt_states.TILLED)
