@@ -19,9 +19,7 @@ func progress_plant():
 
 func harvest_plant():
 	if current_stage == plant_stage.GROWN:
-		MoneyManager.add_money(plant_sell_price)
-		get_tree().queue_delete(self)
-		print(MoneyManager.current_money)
+		PlantHandler.remove_plant(self)
 
 func sell_plant():
 	pass

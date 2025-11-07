@@ -23,3 +23,10 @@ func plant(dirt_tile) :
 func update_plants():
 	for plant : Plant in all_plants:
 		plant.progress_plant()
+
+func remove_plant(plant: Plant):
+	MoneyManager.add_money(plant.plant_sell_price)
+	all_plants.remove_at(all_plants.find(plant))
+	plant.dirt.dirt_state = plant.dirt.dirt_states.TILLED
+	get_tree().queue_delete(plant)
+	print(MoneyManager.current_money)
