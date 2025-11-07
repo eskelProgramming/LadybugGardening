@@ -60,6 +60,10 @@ animations = [{
 [node name="Sunflower" type="Area2D" groups=["plant_tiles", "plants"]]
 texture_filter = 1
 script = ExtResource("1_1cqdq")
+num_days_per_tick = 1
+plant_sell_price = 20
+plant_buy_price = 10
+tileset_id = 1
 metadata/_custom_type_script = "uid://bb06fmiijadup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
