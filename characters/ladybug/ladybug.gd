@@ -73,9 +73,8 @@ func _physics_process(_delta):
 				ToolManager.Tools.SCYTHE:
 					pass
 				ToolManager.Tools.SEEDBAG:
-					PlantHandler.plant(MouseHandler.current_dirt_tile)
-					
-					MouseHandler.current_dirt_tile.plant_seed()
+					if PlantHandler.plant(MouseHandler.current_dirt_tile):
+						MouseHandler.current_dirt_tile.plant_seed()
 	
 	if Input.is_action_just_pressed("interact"):
 		if is_touching_stump:

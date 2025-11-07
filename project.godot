@@ -21,6 +21,7 @@ ToolManager="*res://globals/tool_manager.gd"
 MouseHandler="*res://globals/mouse_handler.gd"
 DayNightHandler="*res://globals/day_night_handler.gd"
 PlantHandler="*res://plants/plant_handler.gd"
+MoneyManager="*res://globals/money_manager.gd"
 
 [global_group]
 
