@@ -10,6 +10,7 @@ extends Area2D
 
 var current_days = 1
 var current_stage = plant_stage.SEED
+var dirt : Dirt
 
 func _ready() -> void:
 	animated_sprite.stop()

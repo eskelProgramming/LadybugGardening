@@ -2,7 +2,7 @@ extends Plant
 
 func progress_plant():
 	current_days += 1
-	if current_days >= (num_days_per_tick * (current_stage + 1)):
+	if current_days >= (num_days_per_tick * (current_stage + 1)) and dirt.dirt_state == dirt.dirt_states.PLANTED_WATERED:
 			match current_stage:
 				plant_stage.SEED:
 					current_stage = plant_stage.SPROUT
