@@ -63,7 +63,7 @@ func _physics_process(_delta):
 	animation_to_play = ("walk" if velocity.length() > 0.0 else "idle") + "_" + face_direction
 	
 	if Input.is_action_just_pressed("use") :
-		if MouseHandler.current_dirt_tile != null && is_ladybug_in_range() :
+		if MouseHandler.current_dirt_tile != null && is_ladybug_in_range():
 			match ToolManager.current_tool:
 				ToolManager.Tools.WATERING_CAN:
 					MouseHandler.current_dirt_tile.water_dirt()
@@ -71,7 +71,8 @@ func _physics_process(_delta):
 					MouseHandler.current_dirt_tile.hoe_dirt()
 					animation_to_play = "hoe_" + face_direction
 				ToolManager.Tools.SCYTHE:
-					pass
+					if MouseHandler.current_plant_tile != null:
+						MouseHandler.current_plant_tile.harvest_plant()
 				ToolManager.Tools.SEEDBAG:
 					if PlantHandler.plant(MouseHandler.current_dirt_tile):
 						MouseHandler.current_dirt_tile.plant_seed()
