@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var _animated_sprite = $AnimatedSprite2D
 @onready var toolbar = $Camera2D/toolbar
 @onready var ladybug = $"."
+@onready var money_label = $Camera2D/Money
 
 # Properties
 @export var speed = 250.0
@@ -17,6 +18,7 @@ var is_touching_stump = false
 func _ready():
 	_animated_sprite.stop()
 	_animated_sprite.play("idle_down")
+	money_label.text = "Money: %s" % MoneyManager.current_money
 
 func _physics_process(_delta):
 	# Reset velocity
@@ -73,9 +75,11 @@ func _physics_process(_delta):
 				ToolManager.Tools.SCYTHE:
 					if MouseHandler.current_plant_tile != null:
 						MouseHandler.current_plant_tile.harvest_plant()
+						money_label.text = "Money: %s" % MoneyManager.current_moneyd
 				ToolManager.Tools.SEEDBAG:
 					if PlantHandler.plant(MouseHandler.current_dirt_tile):
 						MouseHandler.current_dirt_tile.plant_seed()
+						money_label.text = "Money: %s" % MoneyManager.current_money
 	
 	if Input.is_action_just_pressed("interact"):
 		if is_touching_stump:
