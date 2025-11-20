@@ -2,7 +2,7 @@ class_name Plant_Handler
 extends Node
 
 var all_plant_types = ["sunflower", "potato"]
-var current_seed = all_plant_types[1]
+var current_seed = all_plant_types[0]
 var all_plants = []
 
 func plant(dirt_tile) :
