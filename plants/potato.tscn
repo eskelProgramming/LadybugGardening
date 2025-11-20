@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://bu2lo5mjsxpv6"]
+
+[ext_resource type="Script" uid="uid://bhrpia1hkkrp" path="res://potato.gd" id="1_cju6u"]
+[ext_resource type="Texture2D" uid="uid://c3gjqqlsrafpn" path="res://assets/plants/potato.png" id="2_qj8ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cju6u"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbk0f"]
+atlas = ExtResource("2_qj8ys")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gxhf"]
+atlas = ExtResource("2_qj8ys")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw2w7"]
+atlas = ExtResource("2_qj8ys")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_babh7"]
+atlas = ExtResource("2_qj8ys")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhw2r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbk0f")
+}],
+"loop": true,
+"name": &"grown",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gxhf")
+}],
+"loop": true,
+"name": &"seed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw2w7")
+}],
+"loop": true,
+"name": &"sprout",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_babh7")
+}],
+"loop": true,
+"name": &"stalk",
+"speed": 5.0
+}]
+
+[node name="potato" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_cju6u")
+num_days_per_tick = 2
+plant_sell_price = 40
+plant_buy_price = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_cju6u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_fhw2r")
+animation = &"seed"
+autoplay = "seed"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

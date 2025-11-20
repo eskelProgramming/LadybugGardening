@@ -75,7 +75,7 @@ func _physics_process(_delta):
 				ToolManager.Tools.SCYTHE:
 					if MouseHandler.current_plant_tile != null:
 						MouseHandler.current_plant_tile.harvest_plant()
-						money_label.text = "Money: %s" % MoneyManager.current_moneyd
+						money_label.text = "Money: %s" % MoneyManager.current_money
 				ToolManager.Tools.SEEDBAG:
 					if PlantHandler.plant(MouseHandler.current_dirt_tile):
 						MouseHandler.current_dirt_tile.plant_seed()
