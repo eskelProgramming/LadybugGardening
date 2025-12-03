@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c573e6qycry2y"]
+
+[ext_resource type="Texture2D" uid="uid://ct50671coij88" path="res://assets/plants/sunflower_thumbnail.png" id="1_we7et"]
+[ext_resource type="Texture2D" uid="uid://cetvubuwyxjpq" path="res://assets/plants/potato_thumbnail.png" id="2_fs16l"]
+
+[node name="Items" type="ItemList"]
+texture_filter = 1
+offset_right = 176.0
+offset_bottom = 121.0
+auto_width = true
+auto_height = true
+item_count = 2
+max_columns = 2
+icon_mode = 0
+icon_scale = 5.0
+item_0/text = "Sunflower 10"
+item_0/icon = ExtResource("1_we7et")
+item_1/text = "Potato 15"
+item_1/icon = ExtResource("2_fs16l")
