@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var toolbar = $Camera2D/toolbar
 @onready var ladybug = $"."
 @onready var money_label = $Camera2D/Money
+@onready var seedbag_ui = $Camera2D/seedbag_ui
 
 # Properties
 @export var speed = 250.0
@@ -41,15 +42,20 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("down"):
 		velocity.y += 1.0 * speed
 		face_direction = "down"
+
 	
 	if Input.is_action_just_pressed("toolbar_1"):
 		ToolManager.current_tool = ToolManager.Tools.WATERING_CAN
+		seedbag_ui.hide()
 	if Input.is_action_just_pressed("toolbar_2"):
 		ToolManager.current_tool = ToolManager.Tools.HOE
+		seedbag_ui.hide()
 	if Input.is_action_just_pressed("toolbar_3"):
 		ToolManager.current_tool = ToolManager.Tools.SCYTHE
+		seedbag_ui.hide()
 	if Input.is_action_just_pressed("toolbar_4"):
 		ToolManager.current_tool = ToolManager.Tools.SEEDBAG
+		seedbag_ui.show()
 		
 		# Set the toolbar to the correct tool
 	match ToolManager.current_tool:
@@ -103,8 +109,15 @@ func _on_toolbar_item_clicked(index: int, at_position: Vector2, mouse_button_ind
 			toolbar.select(2)
 		3:
 			ToolManager.current_tool = ToolManager.Tools.SEEDBAG
+			seedbag_ui.show()
 			toolbar.select(3)
 
 func is_ladybug_in_range():
 	var distance_to = ladybug.position.distance_to(MouseHandler.current_dirt_tile.position)
 	return distance_to < 40
+
+
+func _on_seedbag_ui_item_selected(index: int) -> void:
+		PlantHandler.current_seed = PlantHandler.all_plant_types[index]
+		seedbag_ui.hide()
+		
